@@ -8,7 +8,7 @@ export class UsersService {
 
   getAllUsers(role?: 'INTERN' | 'ENGINEER' | 'ADMIN') {
     if (role) {
-      this.users.filter((user) => user.role === role);
+      return this.users.filter((user) => user.role === role);
     }
 
     return this.users;
