@@ -2,5 +2,7 @@ export type UserType = {
   id: number;
   name: string;
   email: string;
-  role: 'INTERN' | 'ENGINEER' | 'ADMIN';
+  role: RoleType;
 };
+
+export type RoleType = 'INTERN' | 'ENGINEER' | 'ADMIN';
