@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   Query,
@@ -21,8 +22,8 @@ export class UsersController {
   }
 
   @Get(':id')
-  getSingleUser(@Param('id') id: string) {
-    return this.usersService.getSingleUser(+id); // '+' (unary plus) operator converts id to a number
+  getSingleUser(@Param('id', ParseIntPipe) id: number) {
+    return this.usersService.getSingleUser(id);
   }
 
   @Post()
@@ -31,12 +32,15 @@ export class UsersController {
   }
 
   @Patch(':id')
-  updateUser(@Param('id') id: string, @Body() userUpdate: Partial<UserType>) {
-    return this.usersService.updateUser(+id, userUpdate);
+  updateUser(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() userUpdate: Partial<UserType>,
+  ) {
+    return this.usersService.updateUser(id, userUpdate);
   }
 
   @Delete(':id')
-  deleteUser(@Param('id') id: string) {
-    return this.usersService.deleteUser(+id);
+  deleteUser(@Param('id', ParseIntPipe) id: number) {
+    return this.usersService.deleteUser(id);
   }
 }
